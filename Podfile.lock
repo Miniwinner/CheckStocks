@@ -1,0 +1,42 @@
+PODS:
+  - CocoaLumberjack (3.8.1):
+    - CocoaLumberjack/Core (= 3.8.1)
+  - CocoaLumberjack/Core (3.8.1)
+  - Kingfisher (7.9.1)
+  - SDWebImage (5.18.1):
+    - SDWebImage/Core (= 5.18.1)
+  - SDWebImage/Core (5.18.1)
+  - SVGKit (3.1.1):
+    - CocoaLumberjack (~> 3.0)
+
+DEPENDENCIES:
+  - CocoaLumberjack
+  - Kingfisher (~> 7.0)
+  - SDWebImage (~> 5.0)
+  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
+
+SPEC REPOS:
+  trunk:
+    - CocoaLumberjack
+    - Kingfisher
+    - SDWebImage
+
+EXTERNAL SOURCES:
+  SVGKit:
+    :branch: 3.x
+    :git: https://github.com/SVGKit/SVGKit.git
+
+CHECKOUT OPTIONS:
+  SVGKit:
+    :commit: 3071439e9a20c0be7cfa7fbeb72278d1482fc740
+    :git: https://github.com/SVGKit/SVGKit.git
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 5c7e64cdb877770859bddec4d3d5a0d7c9299df9
+  Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
+  SDWebImage: ebdbcebc7933a45226d9313bd0118bc052ad458b
+  SVGKit: 9bc0f0982df559e65b96f2150ff9c15a61e453ac
+
+PODFILE CHECKSUM: 261963b4f6f87694c1cca08b8bceff64705fe08b
+
+COCOAPODS: 1.12.1
