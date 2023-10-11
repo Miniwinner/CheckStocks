@@ -41,6 +41,8 @@ struct Persist<T> {
 
 extension UserDefaults {
     @Persist(key: "defaultStock", defaultValue: ["AAPL","MSFT","AMZN","FB","JPM","JNJ","GOOGL","NFLX","ORCL","TSLA","INTC","T","V","CSCO","CVX","UNH","PFE","HD","PG","VZ","C","NVDA"])
+
+    
     static var tickers: [String]
     
     @Persist(key: "searchedStock", defaultValue: [])

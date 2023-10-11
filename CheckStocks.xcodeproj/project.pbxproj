@@ -19,12 +19,14 @@
 		4173A1042ABC4F58005F54E6 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4173A1032ABC4F58005F54E6 /* CoreDataService.swift */; };
 		4173A1062ABC5285005F54E6 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4173A1052ABC5285005F54E6 /* Stock.swift */; };
 		4173A1082ABC5DA2005F54E6 /* PropertyRowStockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4173A1072ABC5DA2005F54E6 /* PropertyRowStockModel.swift */; };
+		418569B02AD6759D00E7D260 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418569AF2AD6759D00E7D260 /* SearchViewController.swift */; };
 		4197F3DF2ABD7E71005D1349 /* Stock.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4197F3DD2ABD7E71005D1349 /* Stock.xcdatamodeld */; };
 		4197F3E22ABD7EAF005D1349 /* StockCoreDataModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4197F3E02ABD7EAF005D1349 /* StockCoreDataModel+CoreDataClass.swift */; };
 		4197F3E32ABD7EAF005D1349 /* StockCoreDataModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4197F3E12ABD7EAF005D1349 /* StockCoreDataModel+CoreDataProperties.swift */; };
 		419D07FD2ABDA27B00D9AA3A /* StockConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419D07FC2ABDA27B00D9AA3A /* StockConfigurator.swift */; };
 		41D038A52AB8C20C0091BF14 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D038A42AB8C20C0091BF14 /* ImageCache.swift */; };
 		41D038A82AB9A5860091BF14 /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D038A72AB9A5860091BF14 /* UserDefaultsExtension.swift */; };
+		41D2BF282ACD5ADC0065B8AF /* ButtonsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D2BF272ACD5ADC0065B8AF /* ButtonsMenu.swift */; };
 		41D88CE82ABD977B002F999A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D88CE72ABD977B002F999A /* Quote.swift */; };
 		FDD65534F60F9E002FFA4FA7 /* Pods_CheckStocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737926A1AE31A67DC2D1570B /* Pods_CheckStocks.framework */; };
 /* End PBXBuildFile section */
@@ -44,12 +46,14 @@
 		4173A1032ABC4F58005F54E6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		4173A1052ABC5285005F54E6 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		4173A1072ABC5DA2005F54E6 /* PropertyRowStockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyRowStockModel.swift; sourceTree = "<group>"; };
+		418569AF2AD6759D00E7D260 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4197F3DE2ABD7E71005D1349 /* Stock.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stock.xcdatamodel; sourceTree = "<group>"; };
 		4197F3E02ABD7EAF005D1349 /* StockCoreDataModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockCoreDataModel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		4197F3E12ABD7EAF005D1349 /* StockCoreDataModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StockCoreDataModel+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		419D07FC2ABDA27B00D9AA3A /* StockConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockConfigurator.swift; sourceTree = "<group>"; };
 		41D038A42AB8C20C0091BF14 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		41D038A72AB9A5860091BF14 /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
+		41D2BF272ACD5ADC0065B8AF /* ButtonsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsMenu.swift; sourceTree = "<group>"; };
 		41D88CE72ABD977B002F999A /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		72EAA9FA2C48246AFC2ECB57 /* Pods-CheckStocks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheckStocks.debug.xcconfig"; path = "Target Support Files/Pods-CheckStocks/Pods-CheckStocks.debug.xcconfig"; sourceTree = "<group>"; };
 		737926A1AE31A67DC2D1570B /* Pods_CheckStocks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheckStocks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,8 +138,8 @@
 		412B70492AB8596F00C9BA56 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				412B702F2AB8535100C9BA56 /* ViewController.swift */,
-				412B704F2AB8681100C9BA56 /* StocksTableViewCell.swift */,
+				418569AE2AD6756A00E7D260 /* SearchView */,
+				418569AD2AD6754200E7D260 /* StocksView */,
 				419D07FC2ABDA27B00D9AA3A /* StockConfigurator.swift */,
 			);
 			path = View;
@@ -159,6 +163,24 @@
 				4197F3DD2ABD7E71005D1349 /* Stock.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		418569AD2AD6754200E7D260 /* StocksView */ = {
+			isa = PBXGroup;
+			children = (
+				412B702F2AB8535100C9BA56 /* ViewController.swift */,
+				412B704F2AB8681100C9BA56 /* StocksTableViewCell.swift */,
+				41D2BF272ACD5ADC0065B8AF /* ButtonsMenu.swift */,
+			);
+			path = StocksView;
+			sourceTree = "<group>";
+		};
+		418569AE2AD6756A00E7D260 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				418569AF2AD6759D00E7D260 /* SearchViewController.swift */,
+			);
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 		41D038A62AB9A5610091BF14 /* Extension */ = {
@@ -304,10 +326,12 @@
 				41D038A52AB8C20C0091BF14 /* ImageCache.swift in Sources */,
 				412B70302AB8535100C9BA56 /* ViewController.swift in Sources */,
 				412B702C2AB8535100C9BA56 /* AppDelegate.swift in Sources */,
+				418569B02AD6759D00E7D260 /* SearchViewController.swift in Sources */,
 				4173A1062ABC5285005F54E6 /* Stock.swift in Sources */,
 				412B70452AB8590600C9BA56 /* StocksCompany.swift in Sources */,
 				4197F3DF2ABD7E71005D1349 /* Stock.xcdatamodeld in Sources */,
 				419D07FD2ABDA27B00D9AA3A /* StockConfigurator.swift in Sources */,
+				41D2BF282ACD5ADC0065B8AF /* ButtonsMenu.swift in Sources */,
 				412B70502AB8681100C9BA56 /* StocksTableViewCell.swift in Sources */,
 				4197F3E32ABD7EAF005D1349 /* StockCoreDataModel+CoreDataProperties.swift in Sources */,
 				412B70432AB858F600C9BA56 /* NetworkData.swift in Sources */,

@@ -13,5 +13,5 @@ struct PropertyRowStockModel {
     var deltaPrice: Double
     var currentPrice: Double
     var deltaProcent: Double
-    var isFavorite: Bool
+    var isFavourite: Bool
 }
