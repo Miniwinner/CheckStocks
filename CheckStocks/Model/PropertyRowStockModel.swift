@@ -14,4 +14,4 @@ struct PropertyRowStockModel {
     var currentPrice: Double
     var deltaProcent: Double
     var isFavourite: Bool
-}
+}//privet pisulik

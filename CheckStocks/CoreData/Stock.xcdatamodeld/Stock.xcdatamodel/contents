@@ -7,14 +7,14 @@
         <attribute name="d" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="dp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="exchange" optional="YES" attributeType="String"/>
-        <attribute name="ipo" optional="YES" attributeType="String"/>
+        <attribute name="ipo" optional="YES" attributeType="String" defaultValueString="Star1"/>
         <attribute name="isFavourite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="logo" optional="YES" attributeType="String"/>
+        <attribute name="logo" optional="YES" attributeType="String" defaultValueString="Star1"/>
         <attribute name="marketCapitalization" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString="N/A"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="shareOutstanding" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="ticker" optional="YES" attributeType="String"/>
+        <attribute name="ticker" optional="YES" attributeType="String" defaultValueString="N/A"/>
         <attribute name="typeOfServices" optional="YES" attributeType="String"/>
         <attribute name="webUrl" optional="YES" attributeType="String"/>
     </entity>

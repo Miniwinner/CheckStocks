@@ -115,6 +115,7 @@ class StocksTableViewCell: UITableViewCell {
         self.selectionStyle = .none
     }
     
+    
     func config(with model: PropertyRowStockModel) {
         labelName.text = model.name
         imageSymbol.load(urlString: model.image)

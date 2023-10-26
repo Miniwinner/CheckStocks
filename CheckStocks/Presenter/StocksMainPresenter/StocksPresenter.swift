@@ -16,7 +16,7 @@ protocol StocksMainPresenterProtocol {
     
     var favoriteModels: [PropertyRowStockModel] { get set }
 
-    
+    func openSearchVC()
     
     func didLoadStocks()
   
@@ -50,41 +50,55 @@ class StocksPresenter: StocksMainPresenterProtocol {
     let dispatchGroup = DispatchGroup()
     private var tickers: [String] { return UserDefaults.tickers }
     
-   
+    //MARK: OPEN VC SEARCH
     
-    func didLoadStocks() {
+    func openSearchVC() {
+        let vc = SearchScreenConfigurator.config()
+        view?.openSearchVC(vc: vc)
+    }
+    
+    //MARK: LOAD TICKERS
+    
+    func didLoadStocks(){
+        
         loadAllTickers()
         
     }
     
     private func loadAllTickers() {
-        
 
         for ticker in tickers {
             dispatchGroup.enter()
+
             networkService.fetchCompany(for: ticker) { [weak self] company  in
                 guard let self = self else { return }
                 self.networkService.fetchQuote(for: ticker) { [weak self] quote in
                     guard let self = self else { return }
                     let stock = Stock(companyProfile: company, quote: quote)
                     self.coreDataService.update(with: stock)
-                    dispatchGroup.leave()
                 }
             }
+            dispatchGroup.leave()
+
         }
+
         dispatchGroup.notify(queue: .global()) {
             self.update()
         }
-        self.update()
+//        self.update()
     }
+    
 
+
+
+    
     private func update() {
         guard let dataModels = coreDataService.fetchStock() else { return }
         rowModels = dataModels.compactMap ({ model in
             return PropertyRowStockModel(
-                tickerName: model.ticker ?? "",
-                name: model.name ?? "",
-                image: model.logo ?? "",
+                tickerName: model.ticker ?? "N/A",
+                name: model.name ?? "N/A",
+                image: model.logo ?? "N/A",
                 deltaPrice: model.d,
                 currentPrice: model.c,
                 deltaProcent: model.dp,
@@ -93,8 +107,16 @@ class StocksPresenter: StocksMainPresenterProtocol {
         })
         
         currentList = rowModels
+//        print(currentList)
         view?.reloadData()
     }
+    
+    //MARK: GUARD DATA
+    
+  
+
+    
+    //MARK: FAVOURITE MENU
     
     func refreshFavoriteMenu() {
         dispatchGroup.enter()
