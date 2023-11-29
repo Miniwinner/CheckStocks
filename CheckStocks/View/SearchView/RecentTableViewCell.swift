@@ -12,7 +12,8 @@ class RecentCollectionViewCell: UICollectionViewCell {
    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        setupUI()
+        configLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -24,7 +25,8 @@ class RecentCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.backgroundColor = .red
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
@@ -32,15 +34,20 @@ class RecentCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = color
     }
     
-    func configData(with model:PropertyRowStockModel){
-        labelRecent.text = model.name
+    func configData(with model:String){
+        labelRecent.text = model
+    }
+    
+    func setupUI(){
+        self.addSubview(labelRecent)
     }
     
     func configLayout(){
         NSLayoutConstraint.activate([
-            labelRecent.topAnchor.constraint(equalTo: self.topAnchor,constant: 10),
-            labelRecent.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 10)
-            
+            labelRecent.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 5),
+            labelRecent.heightAnchor.constraint(equalToConstant:35),
+            labelRecent.topAnchor.constraint(equalTo: self.topAnchor,constant: 5),
+            labelRecent.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -5)
         ])
     }
     

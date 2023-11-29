@@ -50,7 +50,7 @@ class ViewController: UIViewController,StocksMainViewProtocol {
     }
     
    
-    //MARK: CONSTRAINTS UI
+    //MARK: - CONSTRAINTS UI
     
     private func setPrimaryMenuConstraints() {
         NSLayoutConstraint.activate([
@@ -100,7 +100,7 @@ class ViewController: UIViewController,StocksMainViewProtocol {
         ])
     }
     
-    //MARK: SERACH BAR
+    //MARK: - SERACH BAR
     
     private func configSearchBar() {
         let attributes: [NSAttributedString.Key: Any] = [
@@ -140,7 +140,7 @@ class ViewController: UIViewController,StocksMainViewProtocol {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    //MARK: SWIPE RECOGNIZER
+    //MARK: - SWIPE RECOGNIZER
     
     private func createGestureRecognizer() {
             let swipeleft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe))
@@ -175,7 +175,7 @@ class ViewController: UIViewController,StocksMainViewProtocol {
     
   
     
-    //MARK: CHANGE MENU METHODS
+    //MARK: - CHANGE MENU METHODS
     
     private func detectedCurrentIndex() {
         if currentIndex == 0 {
@@ -241,7 +241,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     
 }
 
-//MARK: FAVOURITE EXTENSIONS
+//MARK: - FAVOURITE EXTENSIONS
 
 extension ViewController: TapProtocol {
     func didTap(bool: Bool, name: String) {

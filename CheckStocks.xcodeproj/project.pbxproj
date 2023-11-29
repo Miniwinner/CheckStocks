@@ -16,6 +16,8 @@
 		412B70452AB8590600C9BA56 /* StocksCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412B70442AB8590600C9BA56 /* StocksCompany.swift */; };
 		412B704C2AB861A000C9BA56 /* StocksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412B704B2AB861A000C9BA56 /* StocksPresenter.swift */; };
 		412B70502AB8681100C9BA56 /* StocksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412B704F2AB8681100C9BA56 /* StocksTableViewCell.swift */; };
+		412C881D2B14FC8E00140241 /* LookedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412C881C2B14FC8E00140241 /* LookedTableViewCell.swift */; };
+		412C88202B173F6000140241 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412C881F2B173F6000140241 /* DetailedViewController.swift */; };
 		4173A1042ABC4F58005F54E6 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4173A1032ABC4F58005F54E6 /* CoreDataService.swift */; };
 		4173A1062ABC5285005F54E6 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4173A1052ABC5285005F54E6 /* Stock.swift */; };
 		4173A1082ABC5DA2005F54E6 /* PropertyRowStockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4173A1072ABC5DA2005F54E6 /* PropertyRowStockModel.swift */; };
@@ -46,6 +48,8 @@
 		412B70442AB8590600C9BA56 /* StocksCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksCompany.swift; sourceTree = "<group>"; };
 		412B704B2AB861A000C9BA56 /* StocksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksPresenter.swift; sourceTree = "<group>"; };
 		412B704F2AB8681100C9BA56 /* StocksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksTableViewCell.swift; sourceTree = "<group>"; };
+		412C881C2B14FC8E00140241 /* LookedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookedTableViewCell.swift; sourceTree = "<group>"; };
+		412C881F2B173F6000140241 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		4173A1032ABC4F58005F54E6 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		4173A1052ABC5285005F54E6 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		4173A1072ABC5DA2005F54E6 /* PropertyRowStockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyRowStockModel.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		412B70492AB8596F00C9BA56 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				412C881E2B173F3300140241 /* DetailedViewController */,
 				418569AE2AD6756A00E7D260 /* SearchView */,
 				418569AD2AD6754200E7D260 /* StocksMainView */,
 			);
@@ -155,6 +160,14 @@
 				418569DA2AD80DAC00E7D260 /* StocksMainPresenter */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		412C881E2B173F3300140241 /* DetailedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				412C881F2B173F6000140241 /* DetailedViewController.swift */,
+			);
+			path = DetailedViewController;
 			sourceTree = "<group>";
 		};
 		4173A0EA2ABB516A005F54E6 /* CoreData */ = {
@@ -183,6 +196,7 @@
 			children = (
 				418569AF2AD6759D00E7D260 /* SearchViewController.swift */,
 				418569B12AD69D1700E7D260 /* RecentTableViewCell.swift */,
+				412C881C2B14FC8E00140241 /* LookedTableViewCell.swift */,
 			);
 			path = SearchView;
 			sourceTree = "<group>";
@@ -357,6 +371,7 @@
 			files = (
 				418569B72AD6A4D300E7D260 /* SearchPresenter.swift in Sources */,
 				4173A1042ABC4F58005F54E6 /* CoreDataService.swift in Sources */,
+				412C88202B173F6000140241 /* DetailedViewController.swift in Sources */,
 				41D038A52AB8C20C0091BF14 /* ImageCache.swift in Sources */,
 				412B70302AB8535100C9BA56 /* ViewController.swift in Sources */,
 				412B702C2AB8535100C9BA56 /* AppDelegate.swift in Sources */,
@@ -373,6 +388,7 @@
 				4197F3E22ABD7EAF005D1349 /* StockCoreDataModel+CoreDataClass.swift in Sources */,
 				418569B42AD6A40300E7D260 /* SearchConfigurator.swift in Sources */,
 				412B702E2AB8535100C9BA56 /* SceneDelegate.swift in Sources */,
+				412C881D2B14FC8E00140241 /* LookedTableViewCell.swift in Sources */,
 				418569B22AD69D1700E7D260 /* RecentTableViewCell.swift in Sources */,
 				4173A1082ABC5DA2005F54E6 /* PropertyRowStockModel.swift in Sources */,
 				412B704C2AB861A000C9BA56 /* StocksPresenter.swift in Sources */,

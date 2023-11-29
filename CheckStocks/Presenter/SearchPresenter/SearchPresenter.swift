@@ -17,6 +17,7 @@ protocol SearchPresenterProtocol{
     
     func loadSearchTickers()
    
+    func addSearchToHistory(searchText: String)
    // func clearSearchHistory()
     
    // func openDetailedVC(for index: Int)
@@ -61,21 +62,12 @@ class SearchPresenter:SearchPresenterProtocol{
     
     private func loadAllTickers() {
         for ticker in tickers {
-            dispatchGroup.enter()
-            networkService.fetchCompany(for: ticker) { [weak self] company  in
+            networkService.fetchStock(for: ticker) { [weak self] stock  in
                 guard let self = self else { return }
-                self.networkService.fetchQuote(for: ticker) { [weak self] quote in
-                    guard let self = self else { return }
-                    let stock = Stock(companyProfile: company, quote: quote)
-                    self.coreDataService.update(with: stock)
-                    dispatchGroup.leave()
-                }
+                self.coreDataService.update(with: stock)
             }
         }
-        dispatchGroup.notify(queue: .global()) {
-            self.update()
-        }
-        self.update()
+        update()
     }
     
     private func update() {
@@ -117,7 +109,10 @@ class SearchPresenter:SearchPresenterProtocol{
         self.view?.reloadData()
     }
     
-   
+    func addSearchToHistory(searchText: String) {
+        //searchHistory.append(searchText)
+//        print(searchHistory)
+    }
     
     func loadSearchTickers() {
         for ticker in searchedTickers {
@@ -159,6 +154,8 @@ class SearchPresenter:SearchPresenterProtocol{
         filteredRows = rowModels.filter { model -> Bool in
             return model.tickerName.lowercased().contains(self.text?.lowercased() ?? "")
         }
+//        print(filteredRows)
+//        print(rowModels)
         view?.reloadData()
     }
     

@@ -9,10 +9,10 @@ import UIKit
 
 protocol SearchViewProtocol: AnyObject {
     func reloadData()
-   // func openDetailedVC(vc: UIViewController)
+//    func openDetailedVC(vc: UIViewController)
 }
 
-class SearchViewController: UIViewController,SearchViewProtocol, UISearchResultsUpdating {
+class SearchViewController: UIViewController,SearchViewProtocol {
     
     
    
@@ -26,7 +26,13 @@ class SearchViewController: UIViewController,SearchViewProtocol, UISearchResults
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .clear
-        collection.layer.borderColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        return collection
+    }()
+    
+    lazy var tableViewLooked:UITableView = {
+        let collection = UITableView()
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .clear
         return collection
     }()
     
@@ -46,6 +52,8 @@ class SearchViewController: UIViewController,SearchViewProtocol, UISearchResults
         setupUI()
         configSearchBar()
         configLayout()
+        collectionViewRecent.collectionViewLayout = recentCollectionLayout()
+        presenter?.didLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,24 +66,27 @@ class SearchViewController: UIViewController,SearchViewProtocol, UISearchResults
     
     
     func reloadData() {
-        
+        DispatchQueue.main.async {
+            self.collectionViewRecent.reloadData()
+        }
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
-        
-    }
+
     
     //MARK: UI CONSTRAINTS
     
     func setupUI() {
         view.backgroundColor = .white
         
-        collectionViewRecent.collectionViewLayout = recentCollectionLayout()
-        
+
         collectionViewRecent.delegate = self
         collectionViewRecent.dataSource = self
         
+        tableViewLooked.delegate = self
+        tableViewLooked.dataSource = self
+        
         collectionViewRecent.register(RecentCollectionViewCell.self, forCellWithReuseIdentifier: "recent")
+        tableViewLooked.register(LookedTableViewCell.self, forCellReuseIdentifier: "looked")
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -84,8 +95,8 @@ class SearchViewController: UIViewController,SearchViewProtocol, UISearchResults
         navigationController?.navigationBar.tintColor = .white
         
         view.addSubview(collectionViewRecent)
-        
         view.addSubview(labelRecent)
+        view.addSubview(tableViewLooked)
     }
 
     private func configSearchBar() {
@@ -124,13 +135,13 @@ class SearchViewController: UIViewController,SearchViewProtocol, UISearchResults
     
     func recentCollectionLayout() -> UICollectionViewCompositionalLayout {
        let size = NSCollectionLayoutSize(
-           widthDimension: .estimated(55),
-           heightDimension: .absolute(40)
+           widthDimension: .absolute(90),
+           heightDimension: .absolute(50)
        )
        
        let item = NSCollectionLayoutItem(layoutSize: size)
        
-       let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, repeatingSubitem: item, count: 7)
+       let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, repeatingSubitem: item, count: 4)
        group.interItemSpacing = NSCollectionLayoutSpacing.fixed(2)
        
        let section = NSCollectionLayoutSection(group: group)
@@ -148,16 +159,20 @@ class SearchViewController: UIViewController,SearchViewProtocol, UISearchResults
     func  configLayout(){
         NSLayoutConstraint.activate([
             
-            labelRecent.topAnchor.constraint(equalTo: view.topAnchor,constant: 271),
+            labelRecent.topAnchor.constraint(equalTo: view.topAnchor,constant: 331),            //271
             labelRecent.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
             labelRecent.widthAnchor.constraint(equalToConstant: 300),
             labelRecent.heightAnchor.constraint(equalToConstant: 20),
             
-            collectionViewRecent.topAnchor.constraint(equalTo: view.topAnchor,constant: 306),
+            collectionViewRecent.topAnchor.constraint(equalTo: view.topAnchor,constant: 366), // 306
             collectionViewRecent.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 16),
             collectionViewRecent.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
-            collectionViewRecent.heightAnchor.constraint(equalToConstant: 200)
+            collectionViewRecent.heightAnchor.constraint(equalToConstant: 200),
             
+            tableViewLooked.topAnchor.constraint(equalTo: view.topAnchor,constant: 60),
+            tableViewLooked.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 5),
+            tableViewLooked.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5),
+            tableViewLooked.bottomAnchor.constraint(equalTo: labelRecent.topAnchor,constant: -30)
         ])
         
     }
@@ -168,8 +183,7 @@ class SearchViewController: UIViewController,SearchViewProtocol, UISearchResults
 
 extension SearchViewController:UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return presenter?.filteredRows.count ?? 0
-        return 1
+        return presenter?.searchHistory.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -181,13 +195,74 @@ extension SearchViewController:UICollectionViewDelegate,UICollectionViewDataSour
             cell.setupColor(color: UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.00))
         }
         
-       // guard let model = self.presenter?.filteredRows else { return UICollectionViewCell() }
+        guard let model = self.presenter?.searchHistory else { return UICollectionViewCell() }
 
-       // cell.configData(with: model[indexPath.section])
+        cell.configData(with: model[indexPath.section])
         return cell
     }
     
 }
+
+extension SearchViewController:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter?.filteredRows.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableViewLooked.dequeueReusableCell(withIdentifier: "looked") as! LookedTableViewCell
+        
+        if indexPath.section % 2 != 0 {
+            cell.setupColor(color: UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00))
+        } else {
+            cell.setupColor(color: UIColor(red: 0.94, green: 0.96, blue: 0.97, alpha: 1.00))
+        }
+        
+        guard let model = self.presenter?.filteredRows else { return UITableViewCell() }
+
+        cell.config(with: model[indexPath.section])
+//        cell.delegate = self
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 68
+    }
+    
+}
+
+//MARK: - SEARCH-CONTROLLER
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        presenter?.filterContentForSearchText(text)
+        
+        tableViewLooked.reloadData()
+    }
+}
+
+//extension SearchViewController {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        self.showTableViewOrCollectionView(searchText.isEmpty)
+//        if searchText.isEmpty {
+//            UIView.animate(withDuration: 0.3) {
+//                self.bottomTableViewConstraint.constant = self.view.frame.height - 381
+//                self.view.layoutIfNeeded()
+//                self.tableView.isScrollEnabled = false
+//                self.tableHeaderView.setNameForButton()
+//            }
+//        }
+//    }
+//}
+
 
 extension SearchViewController:UISearchControllerDelegate,UISearchBarDelegate{
     

@@ -57,7 +57,7 @@ class StocksPresenter: StocksMainPresenterProtocol {
         view?.openSearchVC(vc: vc)
     }
     
-    //MARK: LOAD TICKERS
+    //MARK: - LOAD TICKERS
     
     func didLoadStocks(){
         
@@ -85,14 +85,11 @@ class StocksPresenter: StocksMainPresenterProtocol {
         dispatchGroup.notify(queue: .global()) {
             self.update()
         }
-//        self.update()
     }
     
-
-
-
     
-    private func update() {
+    
+        private func update() {
         guard let dataModels = coreDataService.fetchStock() else { return }
         rowModels = dataModels.compactMap ({ model in
             return PropertyRowStockModel(
@@ -107,7 +104,6 @@ class StocksPresenter: StocksMainPresenterProtocol {
         })
         
         currentList = rowModels
-//        print(currentList)
         view?.reloadData()
     }
     
@@ -116,7 +112,7 @@ class StocksPresenter: StocksMainPresenterProtocol {
   
 
     
-    //MARK: FAVOURITE MENU
+    //MARK: - FAVOURITE MENU
     
     func refreshFavoriteMenu() {
         dispatchGroup.enter()

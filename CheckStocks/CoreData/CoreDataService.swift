@@ -39,33 +39,36 @@ class CoreDataService {
         do {
             let models = try context.fetch(request)
             
-            guard !models.isEmpty else {
+            if let existingModel = models.first {
+                // Если модель существует, обновите ее свойства
+                //MARK: -  ПРОВЕРКИ!!!//
+                existingModel.ticker = stock.companyProfile.ticker
+                existingModel.name = stock.companyProfile.name
+                existingModel.logo = stock.companyProfile.logo
+                existingModel.c = stock.quote.c
+                existingModel.d = stock.quote.d
+                existingModel.dp = stock.quote.dp
+                existingModel.country = stock.companyProfile.country
+                existingModel.currency = stock.companyProfile.currency
+                existingModel.exchange = stock.companyProfile.exchange
+                existingModel.ipo = stock.companyProfile.ipo
+                existingModel.marketCapitalization = stock.companyProfile.marketCapitalization
+                existingModel.phone = stock.companyProfile.phone
+                existingModel.typeOfServices = stock.companyProfile.finnhubIndustry
+                existingModel.webUrl = stock.companyProfile.weburl
+                existingModel.shareOutstanding = stock.companyProfile.shareOutstanding
+
+                try context.save()
+                print("\(stock.companyProfile.ticker) update ✅✅✅")
+            } else {
+                // Если модель не существует, добавьте новую
                 addStock(stock: stock)
-                return
             }
-
-            models[0].ticker = stock.companyProfile.ticker
-            models[0].name = stock.companyProfile.name
-            models[0].logo = stock.companyProfile.logo
-            models[0].c = stock.quote.c
-            models[0].d = stock.quote.d
-            models[0].dp = stock.quote.dp
-            models[0].country = stock.companyProfile.country
-            models[0].currency = stock.companyProfile.currency
-            models[0].exchange = stock.companyProfile.exchange
-            models[0].ipo = stock.companyProfile.ipo
-            models[0].marketCapitalization = stock.companyProfile.marketCapitalization
-            models[0].phone = stock.companyProfile.phone
-            models[0].typeOfServices = stock.companyProfile.finnhubIndustry
-            models[0].webUrl = stock.companyProfile.weburl
-            models[0].shareOutstanding = stock.companyProfile.shareOutstanding
-
-            try context.save()
-            print("\(stock.companyProfile.ticker) update ✅✅✅")
         } catch {
-            print(error.localizedDescription)
+            print("Error updating stock: \(error.localizedDescription)")
         }
     }
+
     
     func fetchStock() -> [StockCoreDataModel]? {
         let fetchRequest: NSFetchRequest<StockCoreDataModel> = StockCoreDataModel.fetchRequest()
